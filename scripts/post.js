@@ -34,23 +34,22 @@ const messages = [
   },
   { "role": "user", "content": user_message },
 ]
+const max_tokens = 300
+const temperature = 0
 
-let completion = await OpenAiSource.chat.completions.create({
-  messages,
-  model: "gpt-3.5-turbo-1106",
-  max_tokens: 300,
-});
-
-console.log(completion.choices[0]);
+const result = []
 
 while (completion.choices[0].finish_reason === 'length') {
+  let completion = await OpenAiSource.chat.completions.create({
+    messages,
+    model: "gpt-3.5-turbo-1106",
+    max_tokens: max_tokens,
+    temperature: temperature,
+  });
+  result.push(completion.choices[0].message)
+  console.log(result.join(''))
   messages.push({
     "role": "assistant", "content": completion.choices[0].message
   })
-  completion = await OpenAiSource.chat.completions.create({
-    messages,
-    model: "gpt-3.5-turbo-1106",
-    max_tokens: 500,
-  })
-  console.log(completion.choices[0]);
+  console.log(messages)
 }
