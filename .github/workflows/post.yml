@@ -1,0 +1,25 @@
+name: Correction and Posting
+on:
+  push:
+    branches: [master]
+
+jobs:
+  upload:
+    name: Upload
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Upload diff files
+        run: |
+            for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only -- '*.md') ; do
+              # ファイルの内容を表示
+              content=$(cat $file)
+              echo "$content"
+              done
+        env:
+          AWS_DEFAULT_REGION: 'ap-northeast-1'
