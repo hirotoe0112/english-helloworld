@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Get diff files
+      - name: Run Script
         run: |
             for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only -- '*.md') ; do
               # ファイルの内容を環境変数に設定
