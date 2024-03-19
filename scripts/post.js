@@ -1,7 +1,6 @@
 import OpenAI from "openai"
 import 'dotenv/config'
 
-
 /**
  * 自動添削を行い結果を返す
  * @param {string} originalContent
@@ -53,22 +52,35 @@ const getCorrection = async (originalContent) => {
 }
 
 /**
+ * 既存の記事を取得しあればIDを返す
+ * @param {string} year
+ * @param {string} month
+ * @param {string} day
+ * @returns
+ */
+const getExistingPost = async (year, month, day) => {
+  const response = await fetch(`https://english-helloworld.net/wp-json/wp/v2/posts?after=${year}-${month}-${day}T00:00:00&before=${year}-${month}-${day}T23:59:59`, {
+    method: "GET",
+    headers,
+  })
+  const data = await response.json()
+  if (data.length > 0) return data[0].id
+  return undefined
+}
+
+/**
  * wordpressに投稿する
  * @param {string} title
  * @param {string} postBody
  */
-const postToWordpress = async (title, postBody) => {
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization:
-      "Basic " + Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_APPLICATION_PASSWORD}`).toString("base64"),
-  };
+const postToWordpress = async (id, title, postBody) => {
+  const path = id ? `/${id}` : ""
   const body = JSON.stringify({
     title: title,
     content: postBody,
     status: "publish",
   });
-  const response = await fetch("https://english-helloworld.net/wp-json/wp/v2/posts", {
+  const response = await fetch(`https://english-helloworld.net/wp-json/wp/v2/posts${path}`, {
     method: "POST",
     headers,
     body,
@@ -76,11 +88,21 @@ const postToWordpress = async (title, postBody) => {
   console.log(response.status)
 }
 
+const headers = {
+  "Content-Type": "application/json",
+  Authorization:
+    "Basic " + Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_APPLICATION_PASSWORD}`).toString("base64"),
+}
+
 // front matterを除いた本文を取得
 const originalContent = process.env.MD_CONTENT.replace(/---[\s\S]*---/, '')
-// front matter部分からtitleを取得
+// front matter部分からyear, month, day, titleを取得
+const year = process.env.MD_CONTENT.match(/year: (\d{4})/)[1]
+const month = process.env.MD_CONTENT.match(/month: (\d{1,2})/)[1].toString().padStart(2, '0')
+const day = process.env.MD_CONTENT.match(/day: (\d{1,2})/)[1].toString().padStart(2, '0')
 const title = process.env.MD_CONTENT.match(/title: (.*)/)[1]
 
 getCorrection(originalContent).then(async correctionResult => {
-  await postToWordpress(title, originalContent + "\n" + correctionResult)
+  const id = await getExistingPost(year, month, day)
+  await postToWordpress(id, title, originalContent + "\n" + correctionResult)
 })
