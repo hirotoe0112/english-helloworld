@@ -4,8 +4,8 @@ on:
     branches: [master]
 
 jobs:
-  upload:
-    name: Upload
+  job:
+    name: Correction and Posting
     runs-on: ubuntu-latest
 
     steps:
@@ -14,12 +14,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Upload diff files
+      - name: Get diff files
         run: |
             for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only -- '*.md') ; do
-              # ファイルの内容を表示
-              content=$(cat $file)
-              echo "$content"
-              done
+              # ファイルの内容を環境変数に設定
+              export MD_CONTENT=$(cat $file)
+              # 添削と投稿
+              node ./scripts/post.js
+            done
         env:
-          AWS_DEFAULT_REGION: 'ap-northeast-1'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          WP_APPLICATION_PASSWORD: ${{ secrets.NOTION_API_KEY }}
