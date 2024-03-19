@@ -39,8 +39,9 @@ const temperature = 0
 
 const result = []
 
+let completion = undefined
 while (completion.choices[0].finish_reason === 'length') {
-  let completion = await OpenAiSource.chat.completions.create({
+  completion = await OpenAiSource.chat.completions.create({
     messages,
     model: "gpt-3.5-turbo-1106",
     max_tokens: max_tokens,
