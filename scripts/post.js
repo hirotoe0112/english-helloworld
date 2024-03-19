@@ -17,14 +17,14 @@ const getCorrection = async (originalContent) => {
 添削は、文法が正しいか、スペルミスがないか、自然な英語になっているか、という観点でチェックしてください。
 添削結果は、以下の形式で返信してください。{}で示した箇所はあなたが修正する箇所です。その他の部分は全く変えずにそのまま返信してください。
 
-<h2>AIによる自動添削結果</h2>
-<p>添削結果は、以下の通りです。</p>
-<h3>総評</h3>
-<p>{ここに日記の内容について、英会話教師が生徒に向けた感想や意見などを日本語で書いてください。}</p>
-<h3>修正後の文章</h3>
-<p>{ここに修正後の文章全体をそのまま書いてください。}</p>
-<h3>修正箇所の説明</h3>
-<p>{ここに修正箇所の説明を日本語で行ってください。英語初心者の今後の学習に役立つように、関連する知識やネイティブの慣習なども含めつつわかりやすく説明をしてください。}</p>
+<h2 class="wp-block-heading">AIによる自動添削結果</h2>
+添削結果は、以下の通りです。
+<h3 class="wp-block-heading">総評</h3>
+{ここに日記の内容について、英会話教師が生徒に向けた感想や意見などを日本語で書いてください。}
+<h3 class="wp-block-heading">修正後の文章</h3>
+{ここに修正後の文章全体をそのまま書いてください。}
+<h3 class="wp-block-heading">修正箇所の説明</h3>
+{ここに修正箇所の説明を日本語で行ってください。英語初心者の今後の学習に役立つように、関連する知識やネイティブの慣習なども含めつつわかりやすく説明をしてください。}
 `
 
   const user_message = `英語日記の本文は「${originalContent}」です。`
@@ -66,7 +66,7 @@ const postToWordpress = async (title, postBody) => {
   const body = JSON.stringify({
     title: title,
     content: postBody,
-    status: "draft",
+    status: "publish",
   });
   const response = await fetch("https://english-helloworld.net/wp-json/wp/v2/posts", {
     method: "POST",
