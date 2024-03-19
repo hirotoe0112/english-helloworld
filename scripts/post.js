@@ -1,5 +1,4 @@
 import OpenAI from "openai"
-import { Client } from "@notionhq/client"
 import 'dotenv/config'
 
 const OpenAiSource = new OpenAI({
