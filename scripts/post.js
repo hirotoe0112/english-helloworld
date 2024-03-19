@@ -38,7 +38,7 @@ const messages = [
 let completion = await OpenAiSource.chat.completions.create({
   messages,
   model: "gpt-3.5-turbo-1106",
-  max_tokens: 500,
+  max_tokens: 300,
 });
 
 console.log(completion.choices[0]);
