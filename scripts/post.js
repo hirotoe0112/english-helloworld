@@ -103,6 +103,7 @@ const day = process.env.MD_CONTENT.match(/day: (\d{1,2})/)[1].toString().padStar
 const title = process.env.MD_CONTENT.match(/title: (.*)/)[1]
 
 getCorrection(originalContent).then(async correctionResult => {
+  console.log(correctionResult)
   const id = await getExistingPost(year, month, day)
   await postToWordpress(id, title, originalContent + "\n" + correctionResult)
 })
