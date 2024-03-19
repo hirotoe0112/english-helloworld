@@ -19,8 +19,10 @@ const completion = await OpenAiSource.chat.completions.create({
   messages: [
     {
       "role": "system", "content": `
-英語日記の添削をしてください。添削は、文法が正しいか、スペルミスがないか、自然な英語になっているか、という観点でチェックしてください。
-添削結果は、以下の形式で返信してください。修正箇所の説明は日本語で行ってください。また、英語初心者が理解しやすいように、わかりやすく説明をしてください。
+あなたは、英語を母国語とする英会話講師です。生徒が書いた英語日記の添削をしてください。
+添削は、文法が正しいか、スペルミスがないか、自然な英語になっているか、という観点でチェックしてください。
+添削結果は、以下の形式で返信してください。
+修正箇所の説明は日本語で行ってください。また、英語初心者の今後の学習に役立つように、関連する知識やネイティブの慣習なども含めつつわかりやすく説明をしてください。
 
 ## 添削結果
 添削結果は、以下の通りです。
@@ -30,7 +32,7 @@ const completion = await OpenAiSource.chat.completions.create({
     { "role": "user", "content": `英語日記の本文は「${content}」です。` },
   ],
   model: "gpt-3.5-turbo-1106",
-  max_tokens: 300,
+  max_tokens: 500,
 });
 
 console.log(completion.choices[0]);
