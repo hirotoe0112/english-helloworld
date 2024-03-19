@@ -15,10 +15,7 @@ console.log(title)
 const content = process.env.MD_CONTENT.replace(/---[\s\S]*---/, '')
 console.log(content)
 
-const completion = await OpenAiSource.chat.completions.create({
-  messages: [
-    {
-      "role": "system", "content": `
+const system_message = `
 あなたは、英語を母国語とする英会話講師です。生徒が書いた英語日記の添削をしてください。
 添削は、文法が正しいか、スペルミスがないか、自然な英語になっているか、という観点でチェックしてください。
 添削結果は、以下の形式で返信してください。
@@ -28,11 +25,32 @@ const completion = await OpenAiSource.chat.completions.create({
 添削結果は、以下の通りです。
 - 修正後の文章
 - 修正箇所の説明
-` },
-    { "role": "user", "content": `英語日記の本文は「${content}」です。` },
-  ],
+`
+
+const user_message = `英語日記の本文は「${content}」です。`
+const messages = [
+  {
+    "role": "system", "content": system_message
+  },
+  { "role": "user", "content": user_message },
+]
+
+let completion = await OpenAiSource.chat.completions.create({
+  messages,
   model: "gpt-3.5-turbo-1106",
   max_tokens: 500,
 });
 
 console.log(completion.choices[0]);
+
+while (completion.choices[0].finish_reason === 'length') {
+  messages.push({
+    "role": "assistant", "content": completion.choices[0].message
+  })
+  completion = await OpenAiSource.chat.completions.create({
+    messages,
+    model: "gpt-3.5-turbo-1106",
+    max_tokens: 500,
+  })
+  console.log(completion.choices[0]);
+}
