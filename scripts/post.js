@@ -59,10 +59,7 @@ const getCorrection = async (originalContent) => {
  * @returns
  */
 const getExistingPost = async (year, month, day) => {
-  const response = await fetch(`https://english-helloworld.net/wp-json/wp/v2/posts?after=${year}-${month}-${day}T00:00:00&before=${year}-${month}-${day}T23:59:59`, {
-    method: "GET",
-    headers,
-  })
+  const response = await fetch(`https://english-helloworld.net/wp-json/wp/v2/posts?after=${year}-${month}-${day}T00:00:00&before=${year}-${month}-${day}T23:59:59`)
   const data = await response.json()
   if (data.length > 0) return data[0].id
   return undefined
