@@ -39,7 +39,7 @@ The correction results are as follows:
     model: "gpt-3.5-turbo",
   });
   const status = completion?.choices[0].finish_reason === 'stop' ? 'complete' : 'incomplete'
-  return completion.choices[0].message.content + status
+  return `${completion.choices[0].message.content} (${status})`
 }
 
 /**
