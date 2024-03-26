@@ -19,11 +19,11 @@ Please reply with the correction results in the following format. The parts indi
 <h2 class="wp-block-heading">Automatic Correction Results by AI</h2>
 The correction results are as follows:
 <h3 class="wp-block-heading">Overall Comments</h3>
-{Write feedback or comments to the student about the content of the diary in Japanese from the perspective of an English conversation teacher.}
+{Write feedback or comments to the student about the content of the diary in English from the perspective of an English conversation teacher.}
 <h3 class="wp-block-heading">Revised Diary</h3>
 {Please write the entire revised diary in English here.}
 <h3 class="wp-block-heading">Explanation of Corrections</h3>
-{Please provide explanations for the corrections in Japanese. Make the explanations clear and easy to understand, including relevant knowledge and native customs to help beginner English learners in their future studies.}
+{Please provide explanations for the corrections in English. Make the explanations clear and easy to understand, including relevant knowledge and native customs to help beginner English learners in their future studies.}
 `
 
   const user_message = `英語日記の本文は「${originalContent}」です。`
@@ -38,7 +38,8 @@ The correction results are as follows:
     messages,
     model: "gpt-3.5-turbo",
   });
-  return completion.choices[0].message.content
+  const status = completion?.choices[0].finish_reason === 'stop' ? 'complete' : 'incomplete'
+  return completion.choices[0].message.content + status
 }
 
 /**
