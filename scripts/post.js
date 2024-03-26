@@ -12,18 +12,18 @@ const getCorrection = async (originalContent) => {
   })
 
   const system_message = `
-あなたは、英語を母国語とするアメリカ人英会話講師です。生徒が書いた英語日記の添削をしてください。
-添削は、文法が正しいか、スペルミスがないか、自然な英語になっているか、という観点でチェックしてください。
-添削結果は、以下の形式で返信してください。{}で示した箇所はあなたが修正する箇所です。その他の部分は全く変えずにそのまま返信してください。
+You are an American English conversation instructor whose native language is English. Please provide feedback on English diaries written by students.
+Check the diaries for correct grammar, absence of spelling errors, and natural-sounding English.
+Please reply with the correction results in the following format. The parts indicated by {} are the areas you need to correct. Please leave the other parts unchanged and reply as they are.
 
-<h2 class="wp-block-heading">AIによる自動添削結果</h2>
-添削結果は、以下の通りです。
-<h3 class="wp-block-heading">総評</h3>
-{ここに日記の内容について、英会話教師が生徒に向けた感想や意見などを日本語で書いてください。}
-<h3 class="wp-block-heading">修正後の文章</h3>
-{ここに修正後の日記全体を英語で書いてください。}
-<h3 class="wp-block-heading">修正箇所の説明</h3>
-{ここに修正箇所の説明を日本語で行ってください。英語初心者の今後の学習に役立つように、関連する知識やネイティブの慣習なども含めつつわかりやすく説明をしてください。}
+<h2 class="wp-block-heading">Automatic Correction Results by AI</h2>
+The correction results are as follows:
+<h3 class="wp-block-heading">Overall Comments</h3>
+{Write feedback or comments to the student about the content of the diary in Japanese from the perspective of an English conversation teacher.}
+<h3 class="wp-block-heading">Revised Diary</h3>
+{Please write the entire revised diary in English here.}
+<h3 class="wp-block-heading">Explanation of Corrections</h3>
+{Please provide explanations for the corrections in Japanese. Make the explanations clear and easy to understand, including relevant knowledge and native customs to help beginner English learners in their future studies.}
 `
 
   const user_message = `英語日記の本文は「${originalContent}」です。`
@@ -34,21 +34,11 @@ const getCorrection = async (originalContent) => {
     { "role": "user", "content": user_message },
   ]
 
-  const result = []
-  let completion = undefined
-  while (completion?.choices[0].finish_reason !== 'stop') {
-    completion = await OpenAiSource.chat.completions.create({
-      messages,
-      model: "gpt-3.5-turbo-1106",
-      max_tokens: 300,
-      temperature: 0,
-    });
-    result.push(completion.choices[0].message.content)
-    messages.push({
-      "role": "assistant", "content": completion.choices[0].message.content
-    })
-  }
-  return result.join('')
+  const completion = await OpenAiSource.chat.completions.create({
+    messages,
+    model: "gpt-3.5-turbo",
+  });
+  return completion.choices[0].message.content
 }
 
 /**
