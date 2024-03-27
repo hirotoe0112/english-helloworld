@@ -58,6 +58,7 @@ const getExistingPost = async (year, month, day) => {
 
 /**
  * wordpressに投稿する
+ * @param {number} id
  * @param {string} title
  * @param {string} postBody
  */
@@ -82,13 +83,15 @@ const headers = {
     "Basic " + Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_APPLICATION_PASSWORD}`).toString("base64"),
 }
 
+const mdContent = process.env.MD_CONTENT
+
 // front matterを除いた本文を取得
-const originalContent = process.env.MD_CONTENT.replace(/---[\s\S]*---/, '')
+const originalContent = mdContent.replace(/---[\s\S]*---/, '')
 // front matter部分からyear, month, day, titleを取得
-const year = process.env.MD_CONTENT.match(/year: (\d{4})/)[1]
-const month = process.env.MD_CONTENT.match(/month: (\d{1,2})/)[1].toString().padStart(2, '0')
-const day = process.env.MD_CONTENT.match(/day: (\d{1,2})/)[1].toString().padStart(2, '0')
-const title = process.env.MD_CONTENT.match(/title: (.*)/)[1]
+const year = mdContent.match(/year: (\d{4})/)[1]
+const month = mdContent.match(/month: (\d{1,2})/)[1].toString().padStart(2, '0')
+const day = mdContent.match(/day: (\d{1,2})/)[1].toString().padStart(2, '0')
+const title = mdContent.match(/title: (.*)/)[1]
 
 getCorrection(originalContent).then(async correctionResult => {
   const id = await getExistingPost(year, month, day)
