@@ -10,13 +10,22 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<header>
+			<h1><a href="/">English Hello World</a></h1>
+			<span class="description">English essays to improve my English</span>
+		</header>
+		<main>
+			<slot />
+		</main>
+		<footer>
+			© 2024 English Hello World
+		</footer>
 	</body>
 </html>
 <style>
@@ -25,20 +34,52 @@ const { title } = Astro.props;
 		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
 		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
 
-		--color-text: hsl(12, 5%, 4%);
-		--color-bg: hsl(10, 21%, 95%);
-		--color-border: hsl(17, 24%, 90%);
+		--color-text: hsl(0, 0%, 19%);
+		--color-bg: hsl(67, 22%, 85%);
+		--color-border: hsl(0, 0%, 41%);
 	}
 
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: "Times New Roman";
 		font-size: var(--font-size-base);
 		color: var(--color-text);
 		background-color: var(--color-bg);
 	}
 
 	body {
-		margin: 0;
+		margin: auto;
+		padding: 1em;
+		max-width: 80ch;
+	}
+
+	header h1 {
+		font-style: italic;
+		font-size: var(--font-size-lg);
+		font-weight: normal;
+		margin-bottom: 5px;
+	}
+
+	header h1 a {
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	header .description {
+		font-size: 1em;
+	}
+
+	main {
+		margin-top: 50px;
+	}
+
+	footer {
+		margin-top: 100px;
+		margin-bottom: 50px;
+		text-align: center;
+	}
+
+	:global(a) {
+		color: var(--color-text);
 	}
 
 	:global(h1) {
@@ -53,4 +94,5 @@ const { title } = Astro.props;
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
+
 </style>

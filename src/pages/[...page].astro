@@ -1,0 +1,151 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import Layout from "../layouts/Layout.astro";
+import { getPosts, sortByDateDesc } from "../common/post-utils";
+
+const pageTitle = "English Hello World";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = sortByDateDesc(await getPosts());
+
+  return paginate(allPosts, {
+    pageSize: 10,
+  });
+}
+
+const { page } = Astro.props;
+const allPosts = page.data;
+const totalPages = Math.ceil(page.total/page.size);
+---
+
+<Layout title={pageTitle}>
+  <ul class="posts">
+    {
+      allPosts.map((post) => (
+				<li>
+          <p class="date">
+            {post.formattedDate}
+          </p>
+          <p class="title">
+            <a href={`/posts/${post.slug}/`}>{post.title}</a>
+          </p>
+				</li>
+      ))
+    }
+  </ul>
+  <nav class="pagination">
+    <ul>
+      {Array.from({ length: totalPages }, (_,i) => (
+        // 1ページ目はindex.htmlにルーティングする
+        <li class={`page-item ${page.currentPage === i+1 ?'active':''}`}>
+          <a class="page-link"
+          href={i === 0 ? '/' : `${i+1}`}>{i+1}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</Layout>
+
+<style>
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul.posts li {
+    padding: 0;
+    margin-bottom: 40px;
+  }
+
+  ul.posts li p.date {
+    margin: 0;
+    font-style: italic;
+  }
+
+  ul.posts li p.title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  nav {
+    margin-top: 100px;
+  }
+
+  nav.pagination ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  nav.pagination li {
+    margin: 0 5px;
+  }
+
+  .pagination a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .pagination a:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .pagination .active a {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    pointer-events: none;
+    cursor: default;
+  }
+
+	:root {
+		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+	}
+
+	.text-gradient {
+		font-weight: 900;
+		background-image: var(--astro-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 100% 200%;
+		background-position-y: 100%;
+		border-radius: 0.4rem;
+		animation: pulse 4s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			background-position-y: 0%;
+		}
+		50% {
+			background-position-y: 80%;
+		}
+	}
+
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		background: #4f39fa;
+		padding: 1rem;
+		border-radius: 0.4rem;
+		color: var(--color-bg);
+	}
+
+	.instructions code {
+		font-size: 0.875em;
+		border: 0.1em solid var(--color-border);
+		border-radius: 4px;
+		padding: 0.15em 0.25em;
+	}
+
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>
