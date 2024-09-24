@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { formatDate } from './date-utils';
+import { fromIsoToDateForSlug, fromIsoToLocaleDate } from './date-utils';
 
 type Post = {
   slug: string;
@@ -12,10 +12,10 @@ type Post = {
 export async function getPosts(): Promise<Post[]> {
   const posts = await getCollection("posts");
   return posts.map((entry) => ({
-    slug: formatDate(entry.data.pubDate) + '-' + entry.slug,
+    slug: fromIsoToDateForSlug(entry.data.pubDate) + '-' + entry.slug,
     title: entry.data.title,
     pubDate: entry.data.pubDate,
-    formattedDate: formatDate(entry.data.pubDate),
+    formattedDate: fromIsoToLocaleDate(entry.data.pubDate),
     tags: entry.data.tags,
   }));
 }
