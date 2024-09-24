@@ -149,6 +149,118 @@ declare module 'astro:content' {
   render(): Render[".md"];
 }>;
 "posts": {
+"2022/05/28.md": {
+	id: "2022/05/28.md";
+  slug: "i-start-an-english-diary";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/05/29.md": {
+	id: "2022/05/29.md";
+  slug: "dragons-dogma-is-a-lot-of-fun";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/05/30.md": {
+	id: "2022/05/30.md";
+  slug: "i-think-about-whether-i-should-change-a-job-or-not";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/05/31.md": {
+	id: "2022/05/31.md";
+  slug: "job-interview";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/06/01.md": {
+	id: "2022/06/01.md";
+  slug: "job-search-sites";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/06/03.md": {
+	id: "2022/06/03.md";
+  slug: "cold-chinese-dumpling";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/06/07.md": {
+	id: "2022/06/07.md";
+  slug: "interviews";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/06/10.md": {
+	id: "2022/06/10.md";
+  slug: "life-is-hard";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/06/12.md": {
+	id: "2022/06/12.md";
+  slug: "so-delicious";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/06/14.md": {
+	id: "2022/06/14.md";
+  slug: "communication-ability";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2022/07/04.md": {
+	id: "2022/07/04.md";
+  slug: "i-finished-all-job-interviews";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2023/03/12.md": {
+	id: "2023/03/12.md";
+  slug: "new-company";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2023/03/19.md": {
+	id: "2023/03/19.md";
+  slug: "spicy-ramen";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2023/03/23.md": {
+	id: "2023/03/23.md";
+  slug: "health";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2023/03/30.md": {
+	id: "2023/03/30.md";
+  slug: "english-books";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2023/06/30.md": {
+	id: "2023/06/30.md";
+  slug: "convey";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
 "2024/03/19.md": {
 	id: "2024/03/19.md";
   slug: "this-is-a-test-post";
@@ -404,5 +516,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("./../../src/content/config.js");
+	export type ContentConfig = typeof import("../../src/content/config.js");
 }

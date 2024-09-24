@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  english-helloworld:
+    container_name: english-helloworld
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - .:/usr/src
+    tty: true
+    ports:
+      - 4321:4321
