@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { formatDate } from "../../common/date-utils";
+import { fromIsoToLocaleDate, fromIsoToDateForSlug } from "../../common/date-utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
-    params: { slug: formatDate(post.data.pubDate) + '-' + post.slug },
+    params: { slug: fromIsoToDateForSlug(post.data.pubDate) + '-' + post.slug },
     props: { entry: post },
   }));
 }
@@ -16,7 +16,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
-  <p class="date">{formatDate(entry.data.pubDate)}</p>
+  <p class="date">{fromIsoToLocaleDate(entry.data.pubDate)}</p>
   <h2>{entry.data.title}</h2>
   <Content />
 </Layout>
@@ -29,5 +29,6 @@ const { Content } = await entry.render();
 
   h2 {
     margin-top: 0;
+    font-weight: normal;
   }
 </style>
