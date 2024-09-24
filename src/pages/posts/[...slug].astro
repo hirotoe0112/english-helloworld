@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { formatDate } from "../../common/date-utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: formatDate(post.data.pubDate) + '-' + post.slug },
+    props: { entry: post },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <p class="date">{formatDate(entry.data.pubDate)}</p>
+  <h2>{entry.data.title}</h2>
+  <Content />
+</Layout>
+
+<style>
+  p.date {
+    margin: 0;
+    font-style: italic;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+</style>

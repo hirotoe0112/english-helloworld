@@ -22,16 +22,16 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Script
-        run: |
-            for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only -- '*.md') ; do
-              # ファイルの内容を環境変数に設定
-              export MD_CONTENT=$(cat $file)
-              # 添削と投稿
-              node ./scripts/post.js
-            done
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          WP_USERNAME: ${{ secrets.WP_USERNAME }}
-          WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
+      #- name: Run Script
+      #  run: |
+      #      for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only -- '*.md') ; do
+      #        # ファイルの内容を環境変数に設定
+      #        export MD_CONTENT=$(cat $file)
+      #        # 添削と投稿
+      #        node ./scripts/post.js
+      #      done
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      #    WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      #    WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
