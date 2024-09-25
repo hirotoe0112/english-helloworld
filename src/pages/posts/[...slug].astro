@@ -20,6 +20,10 @@ const { Content } = await entry.render();
   <h2>{entry.data.title}</h2>
   <div class="content">
     <Content />
+    <div class="contact">
+      Feel free to contact me if you have any feedback or thoughts!<br>
+      contact@english-helloworld.net
+    </div>
   </div>
 </Layout>
 
@@ -35,5 +39,13 @@ const { Content } = await entry.render();
 
   h2 {
     margin-top: 0;
+  }
+
+  .contact {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: var(--color-callout);
+    border-radius: 5px;
+    text-align: center;
   }
 </style>
