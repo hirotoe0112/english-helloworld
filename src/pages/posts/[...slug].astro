@@ -18,13 +18,19 @@ const { Content } = await entry.render();
 <Layout title={entry.data.title}>
   <p class="date">{fromIsoToLocaleDate(entry.data.pubDate)}</p>
   <h2>{entry.data.title}</h2>
-  <Content />
+  <div class="content">
+    <Content />
+  </div>
 </Layout>
 
 <style>
   p.date {
     margin: 0;
     font-style: italic;
+  }
+
+  div.content{
+    line-height: 1.2;
   }
 
   h2 {
