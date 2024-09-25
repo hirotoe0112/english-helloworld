@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: latest
 
-      - name: Install Dependencies
-        run: npm install
+      #- name: Install Dependencies
+      #  run: npm install
 
       #- name: Run Script
       #  run: |
