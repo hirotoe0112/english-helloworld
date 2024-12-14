@@ -9,13 +9,13 @@ layout: ../layouts/Layout.astro
 
 Thank you for visiting my website!
 
-My name is Suzuka. I’m a Japanese. I want to improve my English, so I started an English diary.
+My name is Suzuka, and I am Japanese. I love English so much that I couldn't resist expressing my ideas in English after I started reading English books.
 
-My dream is to get a bachelor’s degree in Computer Science from an American university. I want to learn it as it will also be useful for my work.
+I am now studying at the University of the People, pursuing a bachelor's degree in Computer Science. Times New Roman is designated in the university, so this website is written in that font.
 
-My hobbies are programming, playing the piano, composing, reading books, playing video games, and so on.
+I like reading English books, as I mentioned previously, and learning IT subjects and other fields in English, playing the piano, composing, and so on in my spare time.
 
-I will try my best to write this in correct and natural English, please tell me if I have made a mistake.
+Since I will try to write this correctly and naturally, please let me know if I have made a mistake.
 
 Thank you.
 
