@@ -506,6 +506,20 @@ declare module 'astro:content' {
   collection: "posts";
   data: any
 } & { render(): Render[".md"] };
+"2024/09/are-you-still-struggling-with-wordpress.md": {
+	id: "2024/09/are-you-still-struggling-with-wordpress.md";
+  slug: "are-you-still-struggling-with-wordpress";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2024/10/scorching-summer-was-over.md": {
+	id: "2024/10/scorching-summer-was-over.md";
+  slug: "scorching-summer-was-over";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
 };
 
 	};

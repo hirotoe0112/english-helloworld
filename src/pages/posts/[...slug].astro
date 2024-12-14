@@ -17,7 +17,7 @@ const { Content } = await entry.render();
 
 <Layout title={entry.data.title}>
   <p class="date">{fromIsoToLocaleDate(entry.data.pubDate)}</p>
-  <h2>{entry.data.title}</h2>
+  <h1>{entry.data.title}</h1>
   <div class="content">
     <Content />
     <div class="contact">
@@ -37,7 +37,7 @@ const { Content } = await entry.render();
     line-height: 1.2;
   }
 
-  h2 {
+  h1 {
     margin-top: 0;
   }
 
