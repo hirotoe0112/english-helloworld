@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 ---
-## About Me
+# About Me
 
 <div style="text-align: center;">
   <img src="/images/icon01.jpg" alt="Suzuka" width="200" style="border-radius: 50%;">
