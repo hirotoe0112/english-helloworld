@@ -520,6 +520,27 @@ declare module 'astro:content' {
   collection: "posts";
   data: any
 } & { render(): Render[".md"] };
+"2025/02/what-makes-a-novel-a-novel.md": {
+	id: "2025/02/what-makes-a-novel-a-novel.md";
+  slug: "what-makes-a-novel-a-novel";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2025/04/so-i-made-a-resolution-to-give-up-chatgpt.md": {
+	id: "2025/04/so-i-made-a-resolution-to-give-up-chatgpt.md";
+  slug: "so-i-made-a-resolution-to-give-up-chatgpt";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
+"2026/03/am-i-crazy.md": {
+	id: "2026/03/am-i-crazy.md";
+  slug: "am-i-crazy";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".md"] };
 };
 
 	};
