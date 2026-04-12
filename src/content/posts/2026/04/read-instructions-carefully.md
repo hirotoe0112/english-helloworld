@@ -4,7 +4,7 @@ title: Read Instructions Carefully
 slug: read-instructions-carefully
 ---
 
-Damn! I messed up! How careless I was! I cannot regret more what I did—actually, what I DID NOT do. Where can I locate a magic to turn back time? I really want to slap myself four hours ago on the cheek and shout—”Read instructions carefully!” That is why I cannot believe myself at all. AT ALL.
+Damn! I messed up! How careless I was! I cannot regret more what I did—actually, what I DID NOT do. Where can I locate a magic to turn back time? I really want to slap myself four hours ago on the cheek and shout—"Read instructions carefully!" That is why I cannot believe myself at all. AT ALL.
 
 Don’t worry. I will explain from the beginning.
 
