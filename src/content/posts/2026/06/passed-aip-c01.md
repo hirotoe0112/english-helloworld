@@ -10,7 +10,7 @@ AIP-C01, AWS Certified Generative AI Developer, is an exam that “ is intended 
 
 This stupid preface has already earned 133 words.
 
-Anyway, I passed AIP-C01. I managed to pass AIP-C01. I had prepared for it for only ten days. I usually prepare for one or two months when taking an exam. This short preparation is not my style. So why did I try it? I followed the trend. Recently, my colleagues have sequentially declared they would take the exam. Like, not taking it means they are not members of my company… So I followed the trend.
+Anyway, I passed AIP-C01. I managed to pass AIP-C01. I had prepared for it for only five days. I usually prepare for one or two months when taking an exam. This short preparation is not my style. So why did I try it? I followed the trend. Recently, my colleagues have sequentially declared they would take the exam. Like, not taking it means they are not members of my company… So I followed the trend.
 
 I needed to practice the piano for a piano recital at the same time. So I practiced the piano, studied AI, practiced the piano, studied AI, practiced, studied, practiced, studied, practiced… That was a nightmare. At least for me. You may be much more occupied than stupid me by work, chores, childcare, nursing, studying, hobbies, and any other things. But for me those days were a nightmare. Above all, I am not mentally strong. I always wanted to give everything up. Throw everything up. I really wanted to release myself from obligations. I really wanted to rest in a southern island, reading a book, sleeping whenever I wanted, listening to cozy island music, and looking at the sea forever. Oh, I have actually not been to a southern island, so I know I have too many ideals for it X-D Music? Who plays music for me?
 
