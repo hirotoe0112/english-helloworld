@@ -1,6 +1,6 @@
 ---
 pubDate: 2026-06-20
-title: [Fiction] Registered
+title: "[Fiction] Registered"
 slug: registered
 ---
 
